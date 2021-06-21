@@ -10,7 +10,8 @@ interface registerProps {
 }
 
 
-const REGISTER_MUTATION = `mutation Register($username: String!, $password: String!) {
+const REGISTER_MUTATION = `
+mutation Register($username: String!, $password: String!) {
 	register(options: {username: $username, password: $password}){
 		  errors{
 		field
@@ -21,7 +22,8 @@ const REGISTER_MUTATION = `mutation Register($username: String!, $password: Stri
 		username
 	  }
 	}
-  }`
+  }
+`
 
 
 
@@ -31,8 +33,7 @@ const Register: React.FC<registerProps> = ({}) => {
 			<Wrapper variant='small'>
 				<Formik initialValues={{username: "", password: ""}} 
 				onSubmit={values => {
-					console.log(values);
-					register(values)
+					return register(values)
 				}}>
 					{({isSubmitting}) => (
 						<Form>
